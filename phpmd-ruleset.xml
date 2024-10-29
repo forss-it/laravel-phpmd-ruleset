@@ -4,7 +4,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
     xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
-
   <rule ref="rulesets/cleancode.xml">
     <exclude name="StaticAccess"/>
   </rule>
@@ -22,6 +21,9 @@
   </rule>
   <rule ref="rulesets/codesize.xml/ExcessiveClassComplexity"/>
   <rule ref="rulesets/controversial.xml"/>
+
+
+
   <rule ref="rulesets/design.xml">
       <exclude name="CouplingBetweenObjects"/>
   </rule>
@@ -30,41 +32,22 @@
           <property name="minimum" value="20"/>
       </properties>
   </rule>
-
-  <!-- Naming rules adjustments -->
   <rule ref="rulesets/naming.xml">
       <exclude name="ShortVariable"/>
+      <exclude name="LongClassName"/>
+      <exclude name="LongVariable"/>
   </rule>
-  
-  <!-- Variable naming length rules -->
-  <rule ref="rulesets/naming.xml/ShortVariable">
+
+  <rule ref="rulesets/naming.xml/ShortVariable"
+        since="0.2"
+        message="Avoid variables with short names like {0}. Configured minimum length is {1}."
+        class="PHPMD\Rule\Naming\ShortVariable"
+        externalInfoUrl="http://phpmd.org/rules/naming.html#shortvariable">
       <priority>3</priority>
       <properties>
-          <property name="minimum" value="3"/>
+          <property name="minimum" description="Minimum length for a variable, property or parameter name" value="2"/>
           <property name="exceptions" value="id,q,w,i,j,v,e,f,fp" />
       </properties>
   </rule>
-  <rule ref="rulesets/naming.xml/LongVariable">
-      <priority>3</priority>
-      <properties>
-          <property name="maximum" value="35"/>
-      </properties>
-  </rule>
-
-  <!-- Method naming rules adjustments -->
-  <rule ref="rulesets/naming.xml/LongMethodName">
-      <priority>3</priority>
-      <properties>
-          <property name="maximum" value="35"/>
-      </properties>
-  </rule>
-  <rule ref="rulesets/naming.xml/ShortMethodName">
-      <priority>3</priority>
-      <properties>
-          <property name="exceptions" value="it_*"/>
-      </properties>
-  </rule>
-
   <rule ref="rulesets/unusedcode.xml"/>
-
 </ruleset>
